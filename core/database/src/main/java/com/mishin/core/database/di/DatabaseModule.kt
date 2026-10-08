@@ -26,7 +26,7 @@ object DatabaseModule {
             MishinDatabase::class.java,
             MishinDatabase.DATABASE_NAME
         )
-            .fallbackToDestructiveMigration()  // Only for development; use proper migrations in production
+            .fallbackToDestructiveMigration(dropAllTables = true)  // Only for development; use proper migrations in production
             .build()
     }
 
