@@ -24,8 +24,10 @@ android {
 dependencies {
     implementation(project(":core:common"))
 
+    implementation(libs.androidx.core.ktx)
+
     // Compose
-    implementation(platform(libs.compose.bom))
+    api(platform(libs.compose.bom))
     api(libs.compose.ui)
     api(libs.compose.ui.graphics)
     api(libs.compose.ui.tooling.preview)
