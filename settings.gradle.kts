@@ -22,6 +22,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "MishinApp"
 
+include(":app")
 include(":core:database")
 include(":core:domain")
 include(":core:data")
