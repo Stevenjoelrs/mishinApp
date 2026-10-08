@@ -1,6 +1,7 @@
 package com.mishin.app.navigation
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.TrendingUp
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Casino
 import androidx.compose.material.icons.filled.Dashboard
@@ -9,7 +10,6 @@ import androidx.compose.material.icons.filled.Pets
 import androidx.compose.material.icons.filled.Receipt
 import androidx.compose.material.icons.filled.Restaurant
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.TrendingUp
 import androidx.compose.ui.graphics.vector.ImageVector
 
 /**
@@ -66,7 +66,7 @@ sealed class TopLevelDestination(
     data object Reports : TopLevelDestination(
         route = "reports",
         title = "Reportes",
-        icon = Icons.Default.TrendingUp
+        icon = Icons.AutoMirrored.Filled.TrendingUp
     )
 
     data object Settings : TopLevelDestination(
