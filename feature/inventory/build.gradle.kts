@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.mishin.feature.inventory"
-    compileSdk = 35
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 26

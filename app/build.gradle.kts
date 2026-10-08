@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.mishin.app"
-    compileSdk = 35
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.mishin.app"

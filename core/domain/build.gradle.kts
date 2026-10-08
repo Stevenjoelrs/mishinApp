@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.mishin.core.domain"
-    compileSdk = 35
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 26
