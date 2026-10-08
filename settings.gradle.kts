@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "MishinApp"
+
+include(":core:common")
