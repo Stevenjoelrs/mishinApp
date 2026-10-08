@@ -24,4 +24,5 @@ rootProject.name = "MishinApp"
 
 include(":core:database")
 include(":core:domain")
+include(":core:data")
 include(":core:common")
