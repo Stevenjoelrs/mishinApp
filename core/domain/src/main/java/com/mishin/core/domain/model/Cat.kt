@@ -16,6 +16,12 @@ data class Cat(
     val status: CatStatus,
     val intakeDate: String,
     val notes: String?,
+    /** Intake requirement: veterinary check done. */
+    val medicalCheck: Boolean,
+    /** Intake requirement: triple vaccine applied. */
+    val tripleVaccine: Boolean,
+    /** Intake requirement: sterilized. */
+    val sterilized: Boolean,
     val createdAt: String,
     val updatedAt: String,
     val deletedAt: String?,

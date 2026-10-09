@@ -8,6 +8,8 @@ import com.mishin.core.database.entity.*
 /**
  * The single Room database for the Mishin app.
  * Version 2 — added key-value app settings for admin-editable screen copy.
+ * Version 3 — added cat intake requirement flags (medical check, triple
+ * vaccine, sterilized).
  *
  * All entities follow the convention:
  * - UUID primary keys (client-generated)
@@ -40,7 +42,7 @@ import com.mishin.core.database.entity.*
         SyncQueueEntryEntity::class,
         AppSettingEntity::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = true
 )
 abstract class MishinDatabase : RoomDatabase() {
