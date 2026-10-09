@@ -78,10 +78,14 @@ sealed class TopLevelDestination(
     companion object {
         /**
          * Destinations shown in the navigation drawer / bottom bar.
+         * Computed on access: building it inside the companion initializer
+         * can capture nulls when a nested object initializes the sealed
+         * class first (class-init order on the JVM/D8).
          */
-        val drawerItems = listOf(
-            Dashboard, Orders, Menu, Inventory,
-            Reservations, Games, Cats, Reports, Settings
-        )
+        val drawerItems: List<TopLevelDestination>
+            get() = listOf(
+                Dashboard, Orders, Menu, Inventory,
+                Reservations, Games, Cats, Reports, Settings
+            )
     }
 }
