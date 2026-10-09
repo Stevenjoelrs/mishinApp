@@ -54,6 +54,9 @@ interface GameDao {
     @Query("SELECT * FROM game_loans WHERE end_time IS NULL ORDER BY start_time DESC")
     fun observeActiveLoans(): Flow<List<GameLoanEntity>>
 
+    @Query("SELECT * FROM game_loans WHERE id = :id")
+    suspend fun getLoanById(id: String): GameLoanEntity?
+
     @Upsert
     suspend fun upsertLoan(loan: GameLoanEntity)
 
