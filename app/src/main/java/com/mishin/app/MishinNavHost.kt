@@ -1,69 +1,55 @@
 package com.mishin.app
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.mishin.app.navigation.TopLevelDestination
+import com.mishin.feature.menu.MenuScreen
 
 /**
- * Main navigation host that will wire all feature screens.
- * Each feature module exposes its own navigation graph extension.
- *
- * For now, this is a skeleton — each feature will register its
- * composable destinations as they are implemented.
+ * Main navigation host wiring all top-level destinations.
+ * Menu has a real screen; the rest render a shared placeholder
+ * until their feature phases are implemented.
  */
 @Composable
-fun MishinNavHost() {
-    val navController = rememberNavController()
-
+fun MishinNavHost(
+    navController: NavHostController,
+    onOpenDrawer: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     NavHost(
         navController = navController,
-        startDestination = TopLevelDestination.Dashboard.route
+        startDestination = TopLevelDestination.Dashboard.route,
+        modifier = modifier
     ) {
-        // Phase 1: Dashboard
-        composable(TopLevelDestination.Dashboard.route) {
-            // DashboardScreen(navController)
-        }
+        placeholder(TopLevelDestination.Dashboard, onOpenDrawer)
+        placeholder(TopLevelDestination.Orders, onOpenDrawer)
 
-        // Phase 3: Orders
-        composable(TopLevelDestination.Orders.route) {
-            // OrdersScreen(navController)
-        }
-
-        // Phase 3: Menu
         composable(TopLevelDestination.Menu.route) {
-            // MenuScreen(navController)
+            MenuScreen(onOpenDrawer = onOpenDrawer)
         }
 
-        // Phase 2: Inventory
-        composable(TopLevelDestination.Inventory.route) {
-            // InventoryScreen(navController)
-        }
+        placeholder(TopLevelDestination.Inventory, onOpenDrawer)
+        placeholder(TopLevelDestination.Reservations, onOpenDrawer)
+        placeholder(TopLevelDestination.Games, onOpenDrawer)
+        placeholder(TopLevelDestination.Cats, onOpenDrawer)
+        placeholder(TopLevelDestination.Reports, onOpenDrawer)
+        placeholder(TopLevelDestination.Settings, onOpenDrawer)
+    }
+}
 
-        // Phase 5: Reservations
-        composable(TopLevelDestination.Reservations.route) {
-            // ReservationsScreen(navController)
-        }
-
-        // Phase 6: Games
-        composable(TopLevelDestination.Games.route) {
-            // GamesScreen(navController)
-        }
-
-        // Phase 6: Cats
-        composable(TopLevelDestination.Cats.route) {
-            // CatsScreen(navController)
-        }
-
-        // Phase 8: Reports
-        composable(TopLevelDestination.Reports.route) {
-            // ReportsScreen(navController)
-        }
-
-        // Phase 8: Settings
-        composable(TopLevelDestination.Settings.route) {
-            // SettingsScreen(navController)
-        }
+private fun NavGraphBuilder.placeholder(
+    destination: TopLevelDestination,
+    onOpenDrawer: () -> Unit
+) {
+    composable(destination.route) {
+        PlaceholderScreen(
+            title = destination.title,
+            icon = destination.icon,
+            onOpenDrawer = onOpenDrawer
+        )
     }
 }
