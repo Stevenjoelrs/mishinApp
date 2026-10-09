@@ -38,6 +38,8 @@ fun MishinNavHost(
         placeholder(TopLevelDestination.Cats, onOpenDrawer)
         placeholder(TopLevelDestination.Reports, onOpenDrawer)
         placeholder(TopLevelDestination.Settings, onOpenDrawer)
+        placeholder(TopLevelDestination.Cinema, onOpenDrawer)
+        placeholder(TopLevelDestination.Events, onOpenDrawer)
     }
 }
 

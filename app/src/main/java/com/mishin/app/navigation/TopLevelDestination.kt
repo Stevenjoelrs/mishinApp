@@ -3,9 +3,11 @@ package com.mishin.app.navigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.TrendingUp
 import androidx.compose.material.icons.outlined.CalendarMonth
-import androidx.compose.material.icons.outlined.Casino
+import androidx.compose.material.icons.outlined.Campaign
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Inventory2
+import androidx.compose.material.icons.outlined.Mic
+import androidx.compose.material.icons.outlined.Movie
 import androidx.compose.material.icons.outlined.Pets
 import androidx.compose.material.icons.outlined.Receipt
 import androidx.compose.material.icons.outlined.Restaurant
@@ -53,14 +55,26 @@ sealed class TopLevelDestination(
 
     data object Games : TopLevelDestination(
         route = "games",
-        title = "Juegos",
-        icon = Icons.Outlined.Casino
+        title = "Karaoke y juegos",
+        icon = Icons.Outlined.Mic
     )
 
     data object Cats : TopLevelDestination(
         route = "cats",
-        title = "Gatos",
+        title = "Gatitos",
         icon = Icons.Outlined.Pets
+    )
+
+    data object Cinema : TopLevelDestination(
+        route = "cinema",
+        title = "Cine",
+        icon = Icons.Outlined.Movie
+    )
+
+    data object Events : TopLevelDestination(
+        route = "events",
+        title = "Eventos y promociones",
+        icon = Icons.Outlined.Campaign
     )
 
     data object Reports : TopLevelDestination(
@@ -84,8 +98,7 @@ sealed class TopLevelDestination(
          */
         val drawerItems: List<TopLevelDestination>
             get() = listOf(
-                Dashboard, Orders, Menu, Inventory,
-                Reservations, Games, Cats, Reports, Settings
+                Dashboard, Cats, Menu, Cinema, Games, Events
             )
     }
 }

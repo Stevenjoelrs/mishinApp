@@ -1,11 +1,14 @@
 package com.mishin.app.navigation
 
+import android.graphics.BitmapFactory
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,15 +25,23 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.mishin.app.R
 import com.mishin.core.ui.theme.MishinColors
+
+private const val LogoAssetDir = "logo"
+private const val PreferredLogoName = "mishin_logo.png"
 
 /**
  * App navigation drawer: brand header, top-level destinations and logout.
@@ -65,12 +76,22 @@ fun MishinDrawer(
                     .background(colors.onBackground),
                 contentAlignment = Alignment.Center
             ) {
-                Icon(
-                    imageVector = Icons.Default.Pets,
-                    contentDescription = null,
-                    tint = colors.background,
-                    modifier = Modifier.size(34.dp)
-                )
+                val logo = rememberDrawerLogo()
+                if (logo != null) {
+                    Image(
+                        bitmap = logo,
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                } else {
+                    Icon(
+                        imageVector = Icons.Default.Pets,
+                        contentDescription = null,
+                        tint = colors.background,
+                        modifier = Modifier.size(34.dp)
+                    )
+                }
             }
             Spacer(modifier = Modifier.width(14.dp))
             Column(modifier = Modifier.weight(1f)) {
@@ -138,6 +159,32 @@ fun MishinDrawer(
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
+    }
+}
+
+/**
+ * Decodes the brand logo from `assets/logo/` once per composition.
+ * Drop `mishin_logo.png` (or any other image) into
+ * `app/src/main/assets/logo/` and it is used on the next build;
+ * without it (or on decode failure) the caller falls back to the paw placeholder.
+ */
+@Composable
+private fun rememberDrawerLogo(): ImageBitmap? {
+    val context = LocalContext.current
+    return remember(context) {
+        runCatching {
+            val dirNames = context.assets.list(LogoAssetDir)
+                ?.filterNot { it.startsWith(".") }
+                .orEmpty()
+            val candidates = listOf(PreferredLogoName) + dirNames
+            candidates.distinct().firstNotNullOfOrNull { name ->
+                runCatching {
+                    context.assets.open("$LogoAssetDir/$name").use { stream ->
+                        BitmapFactory.decodeStream(stream)?.asImageBitmap()
+                    }
+                }.getOrNull()
+            }
+        }.getOrNull()
     }
 }
 
