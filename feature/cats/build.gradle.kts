@@ -28,6 +28,9 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:ui"))
 
+    // Activity (photo picker)
+    implementation(libs.androidx.activity.compose)
+
     // Lifecycle
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)

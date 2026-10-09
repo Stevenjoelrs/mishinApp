@@ -7,12 +7,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.mishin.app.navigation.TopLevelDestination
+import com.mishin.feature.cats.CatsScreen
 import com.mishin.feature.games.GamesScreen
 import com.mishin.feature.menu.MenuScreen
 
 /**
  * Main navigation host wiring all top-level destinations.
- * Menu and Games have real screens; the rest render a shared placeholder
+ * Menu, Games and Cats have real screens; the rest render a shared placeholder
  * until their feature phases are implemented.
  */
 @Composable
@@ -40,7 +41,9 @@ fun MishinNavHost(
             GamesScreen(onOpenDrawer = onOpenDrawer)
         }
 
-        placeholder(TopLevelDestination.Cats, onOpenDrawer)
+        composable(TopLevelDestination.Cats.route) {
+            CatsScreen(onOpenDrawer = onOpenDrawer)
+        }
         placeholder(TopLevelDestination.Reports, onOpenDrawer)
         placeholder(TopLevelDestination.Settings, onOpenDrawer)
         placeholder(TopLevelDestination.Cinema, onOpenDrawer)
