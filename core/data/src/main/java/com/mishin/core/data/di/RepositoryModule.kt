@@ -69,4 +69,10 @@ abstract class RepositoryModule {
     abstract fun bindSyncRepository(
         impl: SyncRepositoryImpl
     ): SyncRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindSettingsRepository(
+        impl: SettingsRepositoryImpl
+    ): SettingsRepository
 }

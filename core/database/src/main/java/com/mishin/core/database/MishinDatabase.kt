@@ -7,7 +7,7 @@ import com.mishin.core.database.entity.*
 
 /**
  * The single Room database for the Mishin app.
- * Version 1 — initial schema matching the Supabase structure.
+ * Version 2 — added key-value app settings for admin-editable screen copy.
  *
  * All entities follow the convention:
  * - UUID primary keys (client-generated)
@@ -37,9 +37,10 @@ import com.mishin.core.database.entity.*
         CatEntity::class,
         // System
         AlertEntity::class,
-        SyncQueueEntryEntity::class
+        SyncQueueEntryEntity::class,
+        AppSettingEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = true
 )
 abstract class MishinDatabase : RoomDatabase() {
@@ -53,6 +54,7 @@ abstract class MishinDatabase : RoomDatabase() {
     abstract fun alertDao(): AlertDao
     abstract fun syncQueueDao(): SyncQueueDao
     abstract fun supplierDao(): SupplierDao
+    abstract fun settingsDao(): SettingsDao
 
     companion object {
         const val DATABASE_NAME = "mishin_db"

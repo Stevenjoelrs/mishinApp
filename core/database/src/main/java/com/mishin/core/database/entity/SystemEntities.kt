@@ -35,3 +35,15 @@ data class SyncQueueEntryEntity(
     @ColumnInfo(name = "last_error") val lastError: String?,
     @ColumnInfo(name = "created_at") val createdAt: String
 )
+
+/**
+ * Small key-value store for admin-editable screen settings
+ * (karaoke pricing, promo copy, etc.).
+ */
+@Entity(tableName = "app_settings")
+data class AppSettingEntity(
+    @PrimaryKey
+    @ColumnInfo(name = "setting_key") val key: String,
+    @ColumnInfo(name = "setting_value") val value: String,
+    @ColumnInfo(name = "updated_at") val updatedAt: String
+)

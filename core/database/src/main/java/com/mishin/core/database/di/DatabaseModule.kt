@@ -39,4 +39,5 @@ object DatabaseModule {
     @Provides fun provideAlertDao(db: MishinDatabase): AlertDao = db.alertDao()
     @Provides fun provideSyncQueueDao(db: MishinDatabase): SyncQueueDao = db.syncQueueDao()
     @Provides fun provideSupplierDao(db: MishinDatabase): SupplierDao = db.supplierDao()
+    @Provides fun provideSettingsDao(db: MishinDatabase): SettingsDao = db.settingsDao()
 }

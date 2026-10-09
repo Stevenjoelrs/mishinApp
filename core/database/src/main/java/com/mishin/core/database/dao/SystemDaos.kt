@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
 import com.mishin.core.database.entity.AlertEntity
+import com.mishin.core.database.entity.AppSettingEntity
 import com.mishin.core.database.entity.SyncQueueEntryEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -68,4 +69,17 @@ interface SupplierDao {
 
     @Query("UPDATE suppliers SET deleted_at = :deletedAt, updated_at = :updatedAt WHERE id = :id")
     suspend fun softDelete(id: String, deletedAt: String, updatedAt: String)
+}
+
+@Dao
+interface SettingsDao {
+
+    @Query("SELECT * FROM app_settings WHERE setting_key = :key")
+    fun observeByKey(key: String): Flow<AppSettingEntity?>
+
+    @Query("SELECT * FROM app_settings WHERE setting_key = :key")
+    suspend fun getValue(key: String): AppSettingEntity?
+
+    @Upsert
+    suspend fun upsert(setting: AppSettingEntity)
 }
