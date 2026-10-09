@@ -46,7 +46,9 @@ fun MishinApp() {
                                 launchSingleTop = true
                                 restoreState = true
                             }
-                        }
+                        },
+                        onClose = { scope.launch { drawerState.close() } },
+                        onLogout = { scope.launch { drawerState.close() } }
                     )
                 }
             ) {

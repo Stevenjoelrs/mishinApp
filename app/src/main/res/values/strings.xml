@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Mishin</string>
+    <string name="drawer_role">Administrador</string>
+    <string name="drawer_close">Cerrar menú</string>
+    <string name="drawer_logout">Cerrar sesión</string>
 </resources>

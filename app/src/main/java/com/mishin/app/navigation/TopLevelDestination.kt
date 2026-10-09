@@ -1,15 +1,15 @@
 package com.mishin.app.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.TrendingUp
-import androidx.compose.material.icons.filled.CalendarMonth
-import androidx.compose.material.icons.filled.Casino
-import androidx.compose.material.icons.filled.Dashboard
-import androidx.compose.material.icons.filled.Inventory2
-import androidx.compose.material.icons.filled.Pets
-import androidx.compose.material.icons.filled.Receipt
-import androidx.compose.material.icons.filled.Restaurant
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.automirrored.outlined.TrendingUp
+import androidx.compose.material.icons.outlined.CalendarMonth
+import androidx.compose.material.icons.outlined.Casino
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Inventory2
+import androidx.compose.material.icons.outlined.Pets
+import androidx.compose.material.icons.outlined.Receipt
+import androidx.compose.material.icons.outlined.Restaurant
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
 
 /**
@@ -24,55 +24,55 @@ sealed class TopLevelDestination(
     data object Dashboard : TopLevelDestination(
         route = "dashboard",
         title = "Inicio",
-        icon = Icons.Default.Dashboard
+        icon = Icons.Outlined.Home
     )
 
     data object Orders : TopLevelDestination(
         route = "orders",
         title = "Pedidos",
-        icon = Icons.Default.Receipt
+        icon = Icons.Outlined.Receipt
     )
 
     data object Menu : TopLevelDestination(
         route = "menu",
         title = "Menú",
-        icon = Icons.Default.Restaurant
+        icon = Icons.Outlined.Restaurant
     )
 
     data object Inventory : TopLevelDestination(
         route = "inventory",
         title = "Inventario",
-        icon = Icons.Default.Inventory2
+        icon = Icons.Outlined.Inventory2
     )
 
     data object Reservations : TopLevelDestination(
         route = "reservations",
         title = "Reservas",
-        icon = Icons.Default.CalendarMonth
+        icon = Icons.Outlined.CalendarMonth
     )
 
     data object Games : TopLevelDestination(
         route = "games",
         title = "Juegos",
-        icon = Icons.Default.Casino
+        icon = Icons.Outlined.Casino
     )
 
     data object Cats : TopLevelDestination(
         route = "cats",
         title = "Gatos",
-        icon = Icons.Default.Pets
+        icon = Icons.Outlined.Pets
     )
 
     data object Reports : TopLevelDestination(
         route = "reports",
         title = "Reportes",
-        icon = Icons.AutoMirrored.Filled.TrendingUp
+        icon = Icons.AutoMirrored.Outlined.TrendingUp
     )
 
     data object Settings : TopLevelDestination(
         route = "settings",
         title = "Ajustes",
-        icon = Icons.Default.Settings
+        icon = Icons.Outlined.Settings
     )
 
     companion object {
