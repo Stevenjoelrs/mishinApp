@@ -8,7 +8,6 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
@@ -77,7 +76,8 @@ private val MishinMaterialTypography = Typography(
 /**
  * Main theme composable for the Mishin app.
  * Applies dark/light scheme + Mishin typography.
- * Sets the status bar color to match the background.
+ * Matches system bar icons to the active theme; the bars themselves
+ * are drawn edge-to-edge with transparent scrims by MainActivity.
  */
 @Composable
 fun MishinTheme(
@@ -86,13 +86,14 @@ fun MishinTheme(
 ) {
     val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
 
-    // Update status bar appearance
+    // Update system bar icon appearance for the active theme
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.background.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
+            val controller = WindowCompat.getInsetsController(window, view)
+            controller.isAppearanceLightStatusBars = !darkTheme
+            controller.isAppearanceLightNavigationBars = !darkTheme
         }
     }
 
