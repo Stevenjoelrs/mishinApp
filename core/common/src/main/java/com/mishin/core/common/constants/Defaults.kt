@@ -14,6 +14,6 @@ object Defaults {
     /** Default location ID for the single-location MVP. */
     const val DEFAULT_LOCATION_ID = "loc_mishin_main"
 
-    /** Default currency code. */
-    const val CURRENCY_CODE = "MXN"
+    /** Default currency code (Bolivianos, displayed as `Bs`). */
+    const val CURRENCY_CODE = "BOB"
 }
